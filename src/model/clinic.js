@@ -1,0 +1,143 @@
+const mongoose = require("mongoose");
+
+const schema = new mongoose.Schema(
+  {
+    searchString: { type: String, required: true },
+    rank: { type: Number, required: true },
+    searchPageUrl: { type: String, required: true },
+    searchPageLoadedUrl: { type: String, required: true },
+    isAdvertisement: { type: Boolean, required: true },
+    title: { type: String, required: true },
+    subTitle: String,
+    description: String,
+    price: mongoose.Schema.Types.Mixed,
+    categoryName: { type: String, required: true },
+    address: { type: String, required: true },
+    neighborhood: String,
+    street: { type: String, required: true },
+    city: { type: String, required: true },
+    postalCode: { type: String, required: true },
+    state: { type: String, required: true },
+    countryCode: { type: String, required: true },
+    website: String,
+    phone: String,
+    phoneUnformatted: String,
+    claimThisBusiness: { type: Boolean, default: false },
+    location: {
+      lat: { type: Number, required: true },
+      lng: { type: Number, required: true },
+    },
+    locatedIn: String,
+    plusCode: String,
+    menu: mongoose.Schema.Types.Mixed,
+    totalScore: Number,
+    permanentlyClosed: { type: Boolean, default: false },
+    temporarilyClosed: { type: Boolean, default: false },
+    placeId: { type: String, required: true },
+    categories: [{ type: String }],
+    fid: String,
+    cid: String,
+    reviewsCount: { type: Number, default: 0 },
+    reviewsDistribution: {
+      oneStar: { type: Number, default: 0 },
+      twoStar: { type: Number, default: 0 },
+      threeStar: { type: Number, default: 0 },
+      fourStar: { type: Number, default: 0 },
+      fiveStar: { type: Number, default: 0 },
+    },
+    imagesCount: Number,
+    imageCategories: [{ type: String }],
+    scrapedAt: { type: Date, default: Date.now },
+    reserveTableUrl: String,
+    googleFoodUrl: String,
+    hotelStars: Number,
+    hotelDescription: String,
+    checkInDate: Date,
+    checkOutDate: Date,
+    similarHotelsNearby: mongoose.Schema.Types.Mixed,
+    hotelReviewSummary: mongoose.Schema.Types.Mixed,
+    hotelAds: [mongoose.Schema.Types.Mixed],
+    openingHours: [
+      {
+        day: { type: String, required: true },
+        hours: { type: String, required: true },
+      },
+    ],
+    peopleAlsoSearch: [
+      {
+        category: String,
+        title: String,
+        reviewsCount: Number,
+        totalScore: Number,
+      },
+    ],
+    placesTags: [{ type: String }],
+    reviewsTags: [{ type: String }],
+    additionalInfo: {
+      Accessibility: [
+        {
+          "Wheelchair accessible entrance": Boolean,
+          "Wheelchair accessible parking lot": Boolean,
+          "Wheelchair accessible restroom": Boolean,
+        },
+      ],
+      Amenities: [
+        {
+          Restroom: Boolean,
+        },
+      ],
+      Planning: [
+        {
+          "Accepts new patients": Boolean,
+          "Appointments recommended": Boolean,
+        },
+      ],
+    },
+    gasPrices: [mongoose.Schema.Types.Mixed],
+    questionsAndAnswers: [mongoose.Schema.Types.Mixed],
+    updatesFromCustomers: mongoose.Schema.Types.Mixed,
+    url: { type: String, required: true },
+    webResults: [
+      {
+        title: String,
+        displayedUrl: String,
+        url: String,
+        description: String,
+      },
+    ],
+    parentPlaceUrl: String,
+    orderBy: [String],
+    images: [mongoose.Schema.Types.Mixed],
+    imageUrls: [{ type: String }],
+    reviews: [
+      {
+        name: { type: String, required: true },
+        text: String,
+        textTranslated: String,
+        publishAt: { type: Date, required: true },
+        publishedAtDate: { type: Date, required: true },
+        likesCount: { type: Number, default: 0 },
+        reviewId: { type: String, required: true },
+        reviewUrl: { type: String, required: true },
+        reviewerId: { type: String, required: true },
+        reviewerUrl: { type: String, required: true },
+        reviewerPhotoUrl: String,
+        reviewerNumberOfReviews: Number,
+        isLocalGuide: { type: Boolean, default: false },
+        reviewOrigin: { type: String, required: true },
+        stars: { type: Number, required: true },
+        rating: Number,
+        responseFromOwnerDate: Date,
+        responseFromOwnerText: String,
+        reviewImageUrls: [{ type: String }],
+        reviewContext: mongoose.Schema.Types.Mixed,
+        reviewDetailedRating: mongoose.Schema.Types.Mixed,
+      },
+    ],
+  },
+  { timestamps: true }
+);
+
+const ScrapClinics = mongoose.model("scrap", schema);
+
+module.exports = ScrapClinics;
